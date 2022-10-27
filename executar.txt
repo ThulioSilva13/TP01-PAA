@@ -1,0 +1,8 @@
+Pode-se executar de 2 formas, lendo o arquivo como parâmetro ou durante a execução do programa
+    1)Execute: 
+        gcc main.c ./executaveis/lerArquivos.c ./executaveis/matriz.c -o main -Wall
+    2)
+    =>Se quiser ler como parâmetro rode: ./main nomeArquivo
+         :.exemplo -> ./main entrada
+
+    =>Sem parâmetro: ./main
