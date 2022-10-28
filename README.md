@@ -5,7 +5,7 @@
   <p>
     1) Execute: 
     
-    gcc main.c ./executaveis/lerArquivos.c ./executaveis/matriz.c -o main -Wall 
+    gcc main.c ./executaveis/lerArquivo.c ./executaveis/matriz.c -o main -Wall 
   </p>
   <p>
     2) Se quiser ler como parâmetro rode: ./main nomeArquivo

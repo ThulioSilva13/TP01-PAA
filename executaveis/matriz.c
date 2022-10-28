@@ -18,20 +18,28 @@ void printaMatriz(int **matriz, int linhas, int colunas){
     }
 }
 
-
-// --------- nao utilizada ------------- //
-
-void inicializaMatriz(int **matriz, int linhas, int colunas){
+int **inicializaMatriz(int **matriz, int linhas, int colunas){
     int i;
-    matriz = malloc (linhas * sizeof (int*)) ; // aloca um vetor de linhas ponteiros para linhas
-    // aloca cada uma das linhas (vetores de COL inteiros)
-    for (i=0; i < linhas; i++){
-        matriz[i] = malloc (colunas * sizeof (int)) ; // aloca cada uma das linhas (vetores de colunas inteiros)
+    //matriz = malloc (linhas * sizeof (int*));
+    matriz = (int **)malloc(sizeof(int *)*linhas);
+
+    if( matriz == NULL){
+        printf("Memoria insuficiente.\n");
+        return NULL;
     }
-    
+    for (i=0; i < linhas; i++){
+        matriz[i] = (int *)malloc(sizeof(int)*colunas);
+        if( matriz[i] == NULL){
+            printf("Memoria insuficiente.\n");
+            return NULL;
+        }
+    }
+    return matriz;
 }
-/* --------- explicação:
-    Quando uso a função inicializaMatriz, da segmentation fault quando insiro algum valor na matriz;
-    Entretanto, quando utilizo o codigo (do inicializa matriz) DIRETO dentro do lerArquivoPrincipal, dá certinho; */
-    
-// --------- nao utilizada ------------- //
+
+void LiberaMatriz(int **matriz, int l){
+    int i;
+    for(i = 0; i < l; i++)
+        free(matriz[i]);
+    free(matriz);
+}
