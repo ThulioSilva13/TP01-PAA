@@ -1,7 +1,25 @@
+#ifndef matriz_h
+#define matriz_h
+
+#include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
 
-void insereMatriz(int **matriz, int posicaoLinha, int posicaoColuna, int valor);
-void printaMatriz(int **matriz, int linhas, int colunas);
-int **inicializaMatriz(int **matriz, int linhas, int colunas);
-void LiberaMatriz(int **matriz, int l);
+typedef struct Celula *TipoApontador;
+typedef struct Celula{
+    int valor;
+    int posicaoLinha;
+    int posicaoColuna;
+    bool visitado;
+    TipoApontador cima;
+    TipoApontador baixo;
+    TipoApontador direita;
+    TipoApontador esquerda;   
+}Celula;
+
+void insereMatriz(Celula **matriz, int posicaoLinha, int posicaoColuna, int valor);
+void printaMatriz(Celula **matriz, int linhas, int colunas);
+Celula **inicializaMatriz(Celula **matriz, int linhas, int colunas);
+void LiberaMatriz(Celula **matriz, int l);
+
+#endif

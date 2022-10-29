@@ -14,7 +14,7 @@ int menu(int opcao){
 }
 
 int main(int argc, char **argv){
-    int **matriz;
+    Celula **matriz;
     int opcao = -1;
     char **nomeArquivo;
     int numLinhas, numColunas;
@@ -40,7 +40,8 @@ int main(int argc, char **argv){
             {
                 printaMatriz(matriz,numLinhas,numColunas);
                 //LiberaMatriz(matriz, l);  
-            }                  
+            }           
+                  
             break;
         default:
             break;

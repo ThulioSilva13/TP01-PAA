@@ -1,10 +1,10 @@
 #include "lerArquivo.h"
 #include "matriz.h"
 
-int lerArquivoPrincipal(char **nomeArquivo, int *l, int *c, int ***matriz)
+int lerArquivoPrincipal(char **nomeArquivo, int *l, int *c, Celula ***matriz)
 {
     int linhas, colunas;
-    
+
     char *cadaNumero;
     char nomepasta[100] = "./arquivos/";
     char *cadaLinha;
@@ -37,7 +37,7 @@ int lerArquivoPrincipal(char **nomeArquivo, int *l, int *c, int ***matriz)
             while (cadaNumero != NULL)
             {
                 //printf("%d %d %d\n",posicaoLinha,posicaoColuna, atoi(cadaNumero));
-                insereMatriz(*matriz,posicaoLinha,posicaoColuna,atoi(cadaNumero));
+                insereMatriz(*matriz, posicaoLinha, posicaoColuna, atoi(cadaNumero));
                 posicaoColuna++;
                 cadaNumero = strtok(NULL, " ");
             }                
