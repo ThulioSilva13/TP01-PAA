@@ -11,10 +11,10 @@ typedef struct Celula{
     int posicaoLinha;
     int posicaoColuna;
     bool visitado;
-    TipoApontador cima;
-    TipoApontador baixo;
-    TipoApontador direita;
-    TipoApontador esquerda;   
+    // TipoApontador cima;
+    // TipoApontador baixo;
+    // TipoApontador direita;
+    // TipoApontador esquerda;   
 }Celula;
 
 void insereMatriz(Celula **matriz, int posicaoLinha, int posicaoColuna, int valor);

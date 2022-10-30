@@ -6,11 +6,12 @@ void insereMatriz(Celula **matriz, int posicaoLinha, int posicaoColuna, int valo
     matriz[posicaoLinha][posicaoColuna].posicaoLinha = posicaoLinha;
     matriz[posicaoLinha][posicaoColuna].posicaoColuna = posicaoColuna;
     matriz[posicaoLinha][posicaoColuna].visitado = false;
-    matriz[posicaoLinha][posicaoColuna].cima = (TipoApontador)malloc(sizeof(Celula));
-    matriz[posicaoLinha][posicaoColuna].baixo = (TipoApontador)malloc(sizeof(Celula));
-    matriz[posicaoLinha][posicaoColuna].esquerda = (TipoApontador)malloc(sizeof(Celula));
-    matriz[posicaoLinha][posicaoColuna].direita = (TipoApontador)malloc(sizeof(Celula));
+    // matriz[posicaoLinha][posicaoColuna].cima = (TipoApontador)malloc(sizeof(Celula));
+    // matriz[posicaoLinha][posicaoColuna].baixo = (TipoApontador)malloc(sizeof(Celula));
+    // matriz[posicaoLinha][posicaoColuna].esquerda = (TipoApontador)malloc(sizeof(Celula));
+    // matriz[posicaoLinha][posicaoColuna].direita = (TipoApontador)malloc(sizeof(Celula));
 }
+void AndaPraBaixo(Celula **matriz)
 
 void printaMatriz(Celula **matriz, int linhas, int colunas){
     int i, j;

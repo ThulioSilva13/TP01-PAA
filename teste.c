@@ -22,7 +22,7 @@ void printSolution(int sol[N][N])
 bool isSafe(int maze[N][N], int x, int y)
 {
 	// if (x, y outside maze) return false
-	if (x >= 0 && x < N && y >= 0 && y < N && maze[x][y] == 1)
+	if (x >= 0 && x < N && y >= 0 && y < N && maze[x][y] == 1) //passar qual valor tem q comparar: contador
 		return true;
 	return false;
 }
@@ -84,7 +84,7 @@ int main()
 	int maze[N][N] = { { 1, 0, 0, 0 },
 					   { 1, 1, 0, 1 },
 					   { 1, 0, 0, 1 },
-					   { 1, 1, 1, 1 } };
+					   { 0, 1, 1, 1 } };
 	solveMaze(maze);
 	return 0;
 }
