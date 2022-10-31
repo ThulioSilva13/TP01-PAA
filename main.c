@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "./executaveis/lerArquivo.h"
 #include "./executaveis/matriz.h"
 
@@ -40,8 +41,11 @@ int main(int argc, char **argv){
             {
                 printaMatriz(matriz,numLinhas,numColunas);
                 //LiberaMatriz(matriz, l);  
-            }           
-                  
+            }
+            criaCaminho(numLinhas, numColunas);           
+            // fib(6);
+            // printf("\nFibRec: %d", FibRec(6));
+            printf("\nFibIter: %d", FibIter(0));
             break;
         default:
             break;
