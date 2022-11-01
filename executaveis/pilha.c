@@ -17,6 +17,7 @@ void Empilha(TipoItem x, TipoPilha *Pilha){
   Aux->Prox = Pilha->Topo;
   Pilha->Topo = Aux;
   Pilha->Tamanho++;
+  printf("\nEmpilhou: %d %d", x.celulaMatriz.posicaoLinha, x.celulaMatriz.posicaoColuna);
 } 
 
 void Desempilha(TipoPilha *Pilha, TipoItem *Item)
@@ -26,12 +27,28 @@ void Desempilha(TipoPilha *Pilha, TipoItem *Item)
   q = Pilha->Topo;
   Pilha->Topo = q->Prox;
   *Item = q->Prox->Item;
-  free(q);  Pilha->Tamanho--;
+  printf ("\nDesempilhou: %d %d", Item->celulaMatriz.posicaoLinha, Item->celulaMatriz.posicaoColuna);
+  //free(q);  
+  //Pilha->Tamanho--;
 } 
 
 int Tamanho(TipoPilha Pilha)
 { return (Pilha.Tamanho); } 
+/*
+void printaPilha(TipoPilha *pilha){
+  if (pilha->elementos==0) // pilha vazia  
+ {
+  printf("Nao ha elementos na pilha.\n"); // pilha zerada, mensagem de erro
+  return;         // retorna a main
+ }
 
+for (int i=0;i<mystack->elementos;i++)  // Estrutura de repetição, corre os elementos do vetor
+
+ printf( "%d ", mystack->elemento1[i]); // imprime o numero, e segue um espaço " ".
+
+   printf("\n");        // enter no final
+}
+*/
 /*
 int main(int argc, char *argv[])
 { struct timeval t;
