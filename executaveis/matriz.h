@@ -18,7 +18,8 @@ void insereMatriz(Celula **matriz, int posicaoLinha, int posicaoColuna, int valo
 void printaMatriz(Celula **matriz, int linhas, int colunas);
 Celula **inicializaMatriz(Celula **matriz, int linhas, int colunas);
 void LiberaMatriz(Celula **matriz, int l);
-void criaCaminho(int N, int M);
-int fibonacci(int n);
+//void criaCaminho(int N, int M, int **caminho);
+//int fibonacci(int n);
+//void printaCaminho(int *caminho);
 
 #endif

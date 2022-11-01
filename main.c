@@ -4,6 +4,7 @@
 #include <math.h>
 #include "./executaveis/lerArquivo.h"
 #include "./executaveis/matriz.h"
+#include "./executaveis/backtracking.h"
 
 int menu(int opcao){
     printf("\n======= MENU =======");
@@ -22,7 +23,7 @@ int main(int argc, char **argv){
 
     nomeArquivo = malloc(sizeof(char) * 30);
     *nomeArquivo = argv[1];
-    
+   
     while(opcao != 0){
         opcao = menu(opcao);
         switch (opcao)
@@ -30,6 +31,7 @@ int main(int argc, char **argv){
         case 0:
             break;
         case 1:
+            
             if (*nomeArquivo == NULL)
             {
                 char nomeArqv[30];
@@ -42,10 +44,14 @@ int main(int argc, char **argv){
                 printaMatriz(matriz,numLinhas,numColunas);
                 //LiberaMatriz(matriz, l);  
             }
-            criaCaminho(numLinhas, numColunas);           
-            // fib(6);
-            // printf("\nFibRec: %d", FibRec(6));
-            printf("\nFibIter: %d", FibIter(0));
+            
+            
+            
+            //criaCaminho(numLinhas, numColunas);
+            //printaCaminho(caminho);  
+            
+            achaCaminho(matriz, numLinhas, numColunas);     
+   
             break;
         default:
             break;

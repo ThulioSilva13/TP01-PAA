@@ -6,7 +6,7 @@
   <p>
     1) Execute: 
     
-    gcc main.c ./executaveis/lerArquivo.c ./executaveis/matriz.c -o main -Wall 
+    gcc main.c ./executaveis/backtracking.c ./executaveis/lerArquivo.c ./executaveis/matriz.c ./executaveis/pilha.c -o main
   </p>
   <p>
     2) Se quiser ler como parâmetro rode: ./main nomeArquivo
