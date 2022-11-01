@@ -18,21 +18,8 @@ void printSolution(int sol[N][N])
 
 // A utility function to check if x, y is valid index for
 // N*N maze
-bool isSafe(int maze[N][N], int x, int y)
-{
-	// if (x, y outside maze) return false
-	if (x >= 0 && x < N && y >= 0 && y < N && maze[x][y] == 1) //passar qual valor tem q comparar: contador
-		return true;
-	return false;
-}
-
-// This function solves the Maze problem using Backtracking.
-// It mainly uses solveMazeUtil() to solve the problem. It
-// returns false if no path is possible, otherwise return
-// true and prints the path in the form of 1s. Please note
-// that there may be more than one solutions, this function
-// prints one of the feasible solutions.
 */
+
 void achaCaminho(Celula **matriz, int numLinhas, int numColunas){
 
 	TipoItem item;
@@ -45,7 +32,7 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas){
 	
 	int indiceCaminho = 0;
 	
-	if (confereCaminho(matriz, numLinhas, numColunas, numLinhas-1, numColunas-1, &pilha, caminho, &indiceCaminho) == false) {
+	if (confereCaminho(matriz, numLinhas, numColunas, 0, 0, &pilha, caminho, &indiceCaminho) == false) {
 		printf("\n\nImpossivel!");
 		return;
 	}
@@ -57,24 +44,31 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas){
     
 	return;
 }
-void printaCaminho(int *caminho, int numLinha, int numColuna){
-	int max = numLinha*numColuna;
-	printf("\nCaminho = ");
-    for (int i = 0; i < max; i++){
-        printf("%d-", caminho[i]);
-    }
+
+bool verificaPosicao(Celula **matriz, int numLinhas, int numColunas, int x, int y, int *caminho, int indiceCaminho)
+{
+	printf("\n\nEntrou na verifica caminho: ");
+	printf("\n\n Matriz[%d][%d]: %d", x,y,matriz[x][y].valor);
+	printf("\n\n Caminho[*indiceCaminho]: %d", caminho[indiceCaminho]);
+	
+
+	// if (x, y outside maze) return false
+	if (x >= 0 && x < numLinhas && y >= 0 && y < numColunas && matriz[x][y].valor == caminho[indiceCaminho]) //passar qual valor tem q comparar: contador
+		return true;
+	return false;
 }
+
 // A recursive utility function to solve Maze problem
 bool confereCaminho(Celula **matriz, int numLinhas, int numColunas, int x, int y, TipoPilha* pilha, int *caminho, int *indiceCaminho)
 {
-	printaCaminho(caminho, numLinhas, numColunas);
+	//printaCaminho(caminho, numLinhas, numColunas);
 	
 	TipoItem item;
 
 	printf("\n\n indice %d", *indiceCaminho);
 	printf("\n\n caminho[0]: %d", caminho[0]);
 	printf("\n\n caminho[*indiceCaminho]: %d", caminho[*indiceCaminho]);
-	printf("\n\n matriz[x][y]: %d", matriz[x][y].valor);
+	printf("\n\n matriz[%d][%d]: %d", x,y,matriz[x][y].valor);
 
 	if (x == numLinhas - 1 && matriz[x][y].valor == caminho[*indiceCaminho]) {
 		printf("\n\n matriz[x][y]: %d", matriz[x][y].valor);
@@ -82,29 +76,45 @@ bool confereCaminho(Celula **matriz, int numLinhas, int numColunas, int x, int y
 		Empilha(item , pilha);
 		return true;
 	}
-	/*
-	// Check if maze[x][y] is valid
-	if (isSafe(maze, x, y) == true) {
+	
+	// Verifica se a posicao é valida
+	if (verificaPosicao(matriz, numLinhas, numColunas, x, y, caminho, *indiceCaminho) == true) {
 		// Check if the current block is already part of
 		// solution path.
-		if (sol[x][y] == 1)
+		if (matriz[x][y].visitado == true)
 			return false;
 		// mark x, y as part of solution path
-		sol[x][y] = 1;
-		// Move forward in x direction 
-		if (solveMazeUtil(maze, x + 1, y, sol) == true)
+		Empilha(item , pilha);
+		indiceCaminho ++;
+		//Primeira opção de caminho: 
+		// Andar para baixo
+		
+		if (confereCaminho(matriz, numLinhas, numColunas, x+1, y, pilha, caminho, indiceCaminho) == true)
+			printf("chamou pra baixo");
 			return true;
-		// If moving in x direction doesn't give solution
-		// then Move down in y direction
-		if (solveMazeUtil(maze, x, y + 1, sol) == true)
+		//Se para baixo não der solução:
+		//Andar para direita
+		
+		if (confereCaminho(matriz, numLinhas, numColunas, x, y+1, pilha, caminho, indiceCaminho) == true)
+			printf("chamou pra direita");
 			return true;
-		// If none of the above movements work then
-		// BACKTRACK: unmark x, y as part of solution path
-		Desempilha (&pilha, &item);
-		indice --;
+		//Se para direita não der solução:
+		//Andar para esquerda
+
+		if (confereCaminho(matriz, numLinhas, numColunas, x, y-1, pilha, caminho, indiceCaminho) == true)
+			printf("chamou pra esquerda");
+			return true;
+		//Se para esquerda não der solução:
+		//Andar para cima
+		if (confereCaminho(matriz, numLinhas, numColunas, x-1, y, pilha, caminho, indiceCaminho) == true)
+			printf("chamou pra cima");
+			return true;
+		
+		//se para cima não der solução => nao tem: desmarcar posição e voltar indiceCaminho
+		Desempilha (pilha, &item);
+		indiceCaminho --;
 		return false;
 	}
-	*/
 	return false;
 }
 
@@ -123,11 +133,6 @@ int* criaCaminho(int N, int M){
         }
         qtd++;
     }
-	
-	// printf("\n\n Caminho = ");
-    // for (int i = 0; i < max; i++){
-    //      printf("%d - ", *caminho[i]);
-    // }
 
 	return caminho;
 }
@@ -142,3 +147,10 @@ int fibonacci(int n)
     return F;
 }
 
+void printaCaminho(int *caminho, int numLinha, int numColuna){
+	int max = numLinha*numColuna;
+	printf("\nCaminho = ");
+    for (int i = 0; i < max; i++){
+        printf("%d-", caminho[i]);
+    }
+}
