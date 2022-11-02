@@ -29,4 +29,8 @@ void Desempilha(TipoPilha *Pilha, TipoItem *Item);
 
 int Tamanho(TipoPilha Pilha);
 
+void imprimePilhaInvertida(TipoPilha *pilhaAuxiliar);
+
+void invertePilha(TipoPilha *pilha);
+
 

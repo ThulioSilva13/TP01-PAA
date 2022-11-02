@@ -23,7 +23,7 @@ void printSolution(int sol[N][N])
 void achaCaminho(Celula **matriz, int numLinhas, int numColunas){
 
 	TipoPilha pilha;
-	TipoItem item;
+	//TipoItem item;
     FPVazia(&pilha);
 
 	int *caminho = malloc((numLinhas*numColunas)*sizeof(int));
@@ -50,14 +50,12 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas){
 		return;
 	}
 
-	
-	for(int i = 0; i < Tamanho(pilha); i++){ 
-		Desempilha (&pilha, &item);
-		//printf ("\nDesempilhou: %d", item.celulaMatriz.valor);
-	}
-	
-
-    
+	// for(int i = 0; i < Tamanho(pilha); i++){ 
+	// 	Desempilha (&pilha, &item);
+	// 	//printf ("\nDesempilhou: %d", item.celulaMatriz.valor);
+	// }
+	invertePilha(&pilha);
+	    
 	return;
 }
 
@@ -69,9 +67,12 @@ bool verificaPosicao(Celula **matriz, int numLinhas, int numColunas, int x, int 
 	// printf("\n y = %d",y);
 
 	// if (x, y outside maze) return false
-	if ((x >= 0 && x < numLinhas) && (y >= 0 && y < numColunas) && (matriz[x][y].valor == caminho[indiceCaminho])){
+	if ((x >= 0 && x < numLinhas) && (y >= 0 && y < numColunas) &&
+	 (matriz[x][y].valor == caminho[indiceCaminho])){
+		//printf("matriz[%d][%d].visitado = %d\n",x,y,);
 		// printf("\n\n Matriz[%d][%d]: %d", x,y,matriz[x][y].valor);
 		// printf("\n\n Caminho[*indiceCaminho]: %d", caminho[indiceCaminho]);
+		
 		return true;
 	} //passar qual valor tem q comparar: contador
 	
@@ -90,31 +91,37 @@ bool confereCaminho(Celula **matriz, int numLinhas, int numColunas, int x, int y
 	// printf("\n\n caminho[*indiceCaminho]: %d", caminho[*indiceCaminho]);
 	// printf("\n\n indice %d", *indiceCaminho);
 	// printf("\n\n caminho[*indiceCaminho]: %d", caminho[*indiceCaminho]);
-	
+
+	/*Achamos que os problemas sao:
+		=> Valor nao esta sendo marcado como visitado;
+		=> Aceitando o caminho esquisito;
+		=> Negocio de desecrementar e desempilhar;
+	*/
 	int novoIndice = *indiceCaminho;
 	
 	// Verifica se a posicao é valida
 	if (verificaPosicao(matriz, numLinhas, numColunas, x, y, caminho, novoIndice) == true) {
-
+		
 		if ((x == numLinhas - 1) && (matriz[x][y].valor == caminho[novoIndice])) {
-			item.celulaMatriz = matriz[x][y];
+			item.celulaMatriz = matriz[x][y];			
+			//item.celulaMatriz.visitado = true;
 			Empilha(item , pilha);
-
 			return true;
 		}
 		
 		// Check if the current block is already part of
 		// solution path.
-		if (matriz[x][y].visitado == true){
-			return false;
-		}
-			
-		// mark x, y as part of solution path
+		// if (matriz[x][y].visitado != true){
+		// 	item.celulaMatriz = matriz[x][y];
+		// 	Empilha(item , pilha);
+		// }
 		item.celulaMatriz = matriz[x][y];
 		Empilha(item , pilha);
+		// mark x, y as part of solution path
+		
 		novoIndice ++;
-
-		// printf("\n\n novoIndice %d",novoIndice);
+		matriz[x][y].visitado = true;
+		
 
 		//Primeira opção de caminho: 
 		// Andar para baixo
@@ -142,9 +149,6 @@ bool confereCaminho(Celula **matriz, int numLinhas, int numColunas, int x, int y
 		//Andar para cima
 		
 		
-		// printf("\n---tenta pra cima---\n");
-		// printf("y: %d ",y);
-		// printf("x: %d\n",x);
 		if (confereCaminho(matriz, numLinhas, numColunas, x-1, y, pilha, caminho, &novoIndice) == true){
 			return true;
 		}
@@ -152,9 +156,10 @@ bool confereCaminho(Celula **matriz, int numLinhas, int numColunas, int x, int y
 		
 		//se para cima não der solução => nao tem: desmarcar posição e voltar indiceCaminho
 		Desempilha (pilha, &item);
-		indiceCaminho --;
+		indiceCaminho -= 1;
 		return false;
 	}
+	//printf("\n PASSOU: matriz[%d][%d]",x,y);
 	return false;
 }
 

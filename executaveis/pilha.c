@@ -17,7 +17,7 @@ void Empilha(TipoItem x, TipoPilha *Pilha){
   Aux->Prox = Pilha->Topo;
   Pilha->Topo = Aux;
   Pilha->Tamanho++;
-  printf("\nEmpilhou: %d %d", x.celulaMatriz.posicaoLinha, x.celulaMatriz.posicaoColuna);
+  //printf("\nEmpilhou: %d %d", x.celulaMatriz.posicaoLinha, x.celulaMatriz.posicaoColuna);
 } 
 
 void Desempilha(TipoPilha *Pilha, TipoItem *Item)
@@ -34,21 +34,47 @@ void Desempilha(TipoPilha *Pilha, TipoItem *Item)
 
 int Tamanho(TipoPilha Pilha)
 { return (Pilha.Tamanho); } 
-/*
-void printaPilha(TipoPilha *pilha){
-  if (pilha->elementos==0) // pilha vazia  
- {
-  printf("Nao ha elementos na pilha.\n"); // pilha zerada, mensagem de erro
-  return;         // retorna a main
- }
 
-for (int i=0;i<mystack->elementos;i++)  // Estrutura de repetição, corre os elementos do vetor
-
- printf( "%d ", mystack->elemento1[i]); // imprime o numero, e segue um espaço " ".
-
-   printf("\n");        // enter no final
+void imprimePilhaInvertida(TipoPilha *pilhaAuxiliar){
+    TipoApontadorPilha apAuxiliar;
+    apAuxiliar = (*pilhaAuxiliar).Topo->Prox;
+    if(Vazia(*pilhaAuxiliar)){
+        printf("A pilha esta vazia!\n");
+    }
+    else{
+        while( apAuxiliar !=NULL){
+            printf("%d %d => valor: %d => visitado: %d",apAuxiliar->Item.celulaMatriz.posicaoLinha+1, 
+            apAuxiliar->Item.celulaMatriz.posicaoColuna+1, apAuxiliar->Item.celulaMatriz.valor,apAuxiliar->Item.celulaMatriz.visitado);
+            printf("\n");
+            apAuxiliar = apAuxiliar->Prox;
+        }
+        printf("\n");
+    }
 }
-*/
+void invertePilha(TipoPilha *pilha){  
+    TipoPilha pilhaAuxiliar;
+    TipoItem itemPilhaAuxiliar;
+
+    TipoApontadorPilha ap;
+    ap = pilha->Topo->Prox;
+
+    FPVazia(&pilhaAuxiliar);
+    if(Vazia(*pilha)){
+        printf("A pilha esta vazia!\n");
+    }
+    else{
+        while( ap !=NULL){
+            itemPilhaAuxiliar.celulaMatriz.valor = ap->Item.celulaMatriz.valor;
+            itemPilhaAuxiliar.celulaMatriz.posicaoLinha = ap->Item.celulaMatriz.posicaoLinha;
+            itemPilhaAuxiliar.celulaMatriz.posicaoColuna = ap->Item.celulaMatriz.posicaoColuna;
+            Empilha(itemPilhaAuxiliar, &pilhaAuxiliar);
+            ap = ap->Prox;
+        }
+        printf("\n");
+    }
+    imprimePilhaInvertida(&pilhaAuxiliar);
+}
+
 /*
 int main(int argc, char *argv[])
 { struct timeval t;
