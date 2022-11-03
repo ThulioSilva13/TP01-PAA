@@ -17,8 +17,8 @@ int menu(int opcao){
 
 int menuAnalise(int modoAnalise){
     printf("\nAtivar modo analise?: ");
-    printf("\n1) Sim");
     printf("\n0) Nao");
+    printf("\n1) Sim");
     printf("\nEscolha: ");
     scanf("%d", &modoAnalise);
     return modoAnalise;
