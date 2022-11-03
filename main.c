@@ -54,8 +54,6 @@ int main(int argc, char **argv){
                     break;
                 }
                 
-                printaMatriz(matriz,numLinhas,numColunas);
-
                 int modoAnalise  = menuAnalise(modoAnalise);
                 achaCaminho(matriz, numLinhas, numColunas, modoAnalise);
                 liberaMatriz(matriz, numLinhas);

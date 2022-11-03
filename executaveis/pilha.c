@@ -36,18 +36,13 @@ int Tamanho(TipoPilha Pilha)
 int QntdRecursao(TipoPilha Pilha){ return (Pilha.qntdRecursao); }
 
 void Imprime_QuantidadeRecursaoDirecao(TipoPilha Pilha){
-     printf("Baixo[%d] ",Pilha.nivelRecursao[0]);
-     printf("Direita[%d] ",Pilha.nivelRecursao[1]);
-     printf("Esquerda[%d] ",Pilha.nivelRecursao[2]);
-     printf("Cima[%d] ",Pilha.nivelRecursao[3]);
-     printf("Recursao fora do if[%d]",Pilha.nivelRecursao[4]-(Pilha.nivelRecursao[0]+Pilha.nivelRecursao[3]+Pilha.nivelRecursao[1]+Pilha.nivelRecursao[2]));
     int maior = Pilha.nivelRecursao[0];
     for (int i = 0; i < 4; i++) 
     {
        if (Pilha.nivelRecursao[i] > maior)
            maior = Pilha.nivelRecursao[i];
     }
-    printf("\nNivel maximo de recursao: %d", maior);
+    printf("\nNivel maximo de recursao: %d\n", maior);
 }
 
 void imprimePilhaInvertida(TipoPilha *pilhaAuxiliar){
