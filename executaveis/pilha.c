@@ -19,7 +19,6 @@ void Empilha(TipoItem x, TipoPilha *Pilha){
   Aux->Prox = Pilha->Topo;
   Pilha->Topo = Aux;
   Pilha->Tamanho++;
-  //printf("\nEmpilhou: %d %d", x.celulaMatriz.posicaoLinha, x.celulaMatriz.posicaoColuna);
 } 
 
 void Desempilha(TipoPilha *Pilha, TipoItem *Item)
@@ -29,7 +28,6 @@ void Desempilha(TipoPilha *Pilha, TipoItem *Item)
   q = Pilha->Topo;
   Pilha->Topo = q->Prox;
   *Item = q->Prox->Item;
-  // printf ("\nDesempilhou: %d %d", Item->celulaMatriz.posicaoLinha, Item->celulaMatriz.posicaoColuna);
 } 
 
 int Tamanho(TipoPilha Pilha)
@@ -56,7 +54,6 @@ void imprimePilhaInvertida(TipoPilha *pilhaAuxiliar){
     TipoApontadorPilha apAuxiliar;
     apAuxiliar = (*pilhaAuxiliar).Topo->Prox;
     if(Vazia(*pilhaAuxiliar)){
-        //printf("A pilha esta vazia!\n");
         return;
     }
     else{
@@ -80,7 +77,6 @@ void invertePilha(TipoPilha *pilha){
 
     FPVazia(&pilhaAuxiliar);
     if(Vazia(*pilha)){
-        //printf("A pilha esta vazia!\n");
         return;
     }
     else{
@@ -95,45 +91,3 @@ void invertePilha(TipoPilha *pilha){
     }
     imprimePilhaInvertida(&pilhaAuxiliar);
 }
-
-/*
-int main(int argc, char *argv[])
-{ struct timeval t;
-  TipoPilha pilha;
-  TipoItem item;
-  int vetor[MAX];
-  int i, j, k, n;
- 
-  gettimeofday(&t,NULL);
-  srand((unsigned int)t.tv_usec);
- 
-  FPVazia(&pilha);
-  
-  //Gera uma permutacao aleatoria de chaves entre 1 e MAX
-  for(i = 0; i < MAX; i++) vetor[i] = i + 1;
-  for(i = 0; i < MAX; i++)
-    { k =  (int) (10.0*rand()/(RAND_MAX + 1.0));
-
-      j =  (int) (10.0*rand()/(RAND_MAX + 1.0));
-      n = vetor[k];
-      vetor[k] = vetor[j];
-      vetor[j] = n;
-    }
-  //Empilha cada chave 
-  for (i = 0; i < MAX; i++)
-    { item.Chave = vetor[i];
-      Empilha(item, &pilha);
-      printf("Empilhou: %d \n", item.Chave);
-    }
-  printf("Tamanho da pilha: %d \n", Tamanho(pilha));
-  
-
-  //Desempilha cada chave 
-  for(i = 0; i < MAX; i++)
-    { Desempilha (&pilha,&item);
-      printf ("Desempilhou: %d \n", item.Chave);
-    }
-  printf("Tamanho da pilha: %d\n", Tamanho(pilha));
-  return(0);
-}
-*/

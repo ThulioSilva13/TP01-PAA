@@ -37,7 +37,6 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas, int modoAnalise
 
 bool verificaPosicao(Celula **matriz, int numLinhas, int numColunas, int x, int y, int *caminho, int indiceCaminho)
 {
-	// if (x, y outside maze) return false
 	if ((x >= 0 && x < numLinhas) && (y >= 0 && y < numColunas) &&
 	 (matriz[x][y].valor == caminho[indiceCaminho])){		
 		return true;
@@ -46,7 +45,6 @@ bool verificaPosicao(Celula **matriz, int numLinhas, int numColunas, int x, int 
 	return false;
 }
 
-// A recursive utility function to solve Maze problem
 bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, TipoPilha* pilha, int *caminho, int *indiceCaminho)
 {
 	TipoItem item;
@@ -61,13 +59,11 @@ bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, Ti
 		if ((x == numLinhas - 1) && (matriz[x][y].valor == caminho[novoIndice])) {
 			item.celulaMatriz = matriz[x][y];		
 
-			//item.celulaMatriz.visitado = true;
 			strcpy(matriz[x][y].cor, ANSI_COLOR_GREEN);
 			Empilha(item , pilha);
 			return true;
 		}
 		
-		// Check if the current block is already part of solution path.
 		// if (matriz[x][y].visitado != true){
 		// 	item.celulaMatriz = matriz[x][y];
 		// 	Empilha(item , pilha);
@@ -77,7 +73,6 @@ bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, Ti
 			return false;
 		}
 
-		// mark x, y as part of solution path
 		matriz[x][y].visitado = true;
 		strcpy(matriz[x][y].cor, ANSI_COLOR_GREEN);
 		
@@ -87,17 +82,14 @@ bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, Ti
 		
 		//Primeira opção de caminho: 
 		// Andar para baixo
-		// printf("tenta pra baixo");
 		
 		pilha->nivelRecursao[0] += 1;
 		if (movimentar(matriz, numLinhas, numColunas, x+1, y, pilha, caminho, &novoIndice) == true){
-			// printf("chamou pra baixo");
 			return true;
 		}
 			
 		//Se para baixo não der solução:
 		//Andar para direita
-		// printf("\ntenta pra direita");
 
 		pilha->nivelRecursao[1] += 1;
 		if (movimentar(matriz, numLinhas, numColunas, x, y+1, pilha, caminho, &novoIndice) == true){
@@ -107,7 +99,6 @@ bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, Ti
 		//Se para direita não der solução:
 		//Andar para esquerda
 
-		// printf("\ntenta pra esquerda");
 		pilha->nivelRecursao[2] += 1;
 		if (movimentar(matriz, numLinhas, numColunas, x, y-1, pilha, caminho, &novoIndice) == true){
 			return true;

@@ -2,7 +2,6 @@
 
 
 void insereMatriz(Celula **matriz, int posicaoLinha, int posicaoColuna, int valor){
-    //(TipoApontador) malloc(sizeof(TipoCelula));
     matriz[posicaoLinha][posicaoColuna].valor = valor;
     matriz[posicaoLinha][posicaoColuna].posicaoLinha = posicaoLinha+1;
     matriz[posicaoLinha][posicaoColuna].posicaoColuna = posicaoColuna+1;
@@ -33,7 +32,6 @@ void printaMatriz(Celula **matriz, int linhas, int colunas){
 
 Celula **inicializaMatriz(Celula **matriz, int linhas, int colunas){
     int i;
-    //matriz = malloc (linhas * sizeof (int*));
     matriz = (Celula **)malloc(sizeof(Celula *)*linhas);
 
     if( matriz == NULL){
