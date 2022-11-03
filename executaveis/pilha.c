@@ -27,9 +27,7 @@ void Desempilha(TipoPilha *Pilha, TipoItem *Item)
   q = Pilha->Topo;
   Pilha->Topo = q->Prox;
   *Item = q->Prox->Item;
-  printf ("\nDesempilhou: %d %d", Item->celulaMatriz.posicaoLinha, Item->celulaMatriz.posicaoColuna);
-  //free(q);  
-  //Pilha->Tamanho--;
+  // printf ("\nDesempilhou: %d %d", Item->celulaMatriz.posicaoLinha, Item->celulaMatriz.posicaoColuna);
 } 
 
 int Tamanho(TipoPilha Pilha)
@@ -39,7 +37,8 @@ void imprimePilhaInvertida(TipoPilha *pilhaAuxiliar){
     TipoApontadorPilha apAuxiliar;
     apAuxiliar = (*pilhaAuxiliar).Topo->Prox;
     if(Vazia(*pilhaAuxiliar)){
-        printf("A pilha esta vazia!\n");
+        //printf("A pilha esta vazia!\n");
+        return;
     }
     else{
         while( apAuxiliar !=NULL){
@@ -51,6 +50,7 @@ void imprimePilhaInvertida(TipoPilha *pilhaAuxiliar){
         printf("\n");
     }
 }
+
 void invertePilha(TipoPilha *pilha){  
     TipoPilha pilhaAuxiliar;
     TipoItem itemPilhaAuxiliar;
@@ -60,7 +60,8 @@ void invertePilha(TipoPilha *pilha){
 
     FPVazia(&pilhaAuxiliar);
     if(Vazia(*pilha)){
-        printf("A pilha esta vazia!\n");
+        //printf("A pilha esta vazia!\n");
+        return;
     }
     else{
         while( ap !=NULL){
