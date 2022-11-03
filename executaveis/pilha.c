@@ -5,6 +5,7 @@ void FPVazia(TipoPilha *Pilha){
   Pilha->Fundo = Pilha->Topo;
   Pilha->Topo->Prox = NULL;
   Pilha->Tamanho = 0;
+  Pilha->qntdRecursao = 0;
 } 
 
 int Vazia(TipoPilha Pilha)
@@ -32,6 +33,8 @@ void Desempilha(TipoPilha *Pilha, TipoItem *Item)
 
 int Tamanho(TipoPilha Pilha)
 { return (Pilha.Tamanho); } 
+
+int QntdRecursao(TipoPilha Pilha){ return (Pilha.qntdRecursao); } 
 
 void imprimePilhaInvertida(TipoPilha *pilhaAuxiliar){
     TipoApontadorPilha apAuxiliar;

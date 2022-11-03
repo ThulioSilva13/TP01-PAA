@@ -1,5 +1,5 @@
 #include "backtracking.h"
-
+int qntdRecursiva = 0;
 void achaCaminho(Celula **matriz, int numLinhas, int numColunas){
 
 	TipoPilha pilha;
@@ -21,6 +21,9 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas){
 			break;
 		}
 	}
+	printf("qntdRecursao: %d\n", qntdRecursiva);
+	printf("qntdRecursao2: %d", QntdRecursao(pilha));
+
 	if (countFalse == (numColunas)){
 		printf("\n\nImpossivel!");
 		return;
@@ -53,6 +56,8 @@ bool verificaPosicao(Celula **matriz, int numLinhas, int numColunas, int x, int 
 bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, TipoPilha* pilha, int *caminho, int *indiceCaminho)
 {
 	TipoItem item;
+	qntdRecursiva++;
+	pilha->qntdRecursao++;
 	//printaCaminho(caminho, numLinhas, numColunas);
 
 	// printf("\n ==== Entrou confereCaminho() ====");
@@ -92,7 +97,7 @@ bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, Ti
 		matriz[x][y].visitado = true;
 		
 		item.celulaMatriz = matriz[x][y];
-		Empilha(item , pilha);
+		Empilha(item,pilha);
 		novoIndice ++;
 		
 		//Primeira opção de caminho: 
@@ -119,12 +124,10 @@ bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, Ti
 		}
 		//Se para esquerda não der solução:
 		//Andar para cima
-		
-		
+			
 		if (movimentar(matriz, numLinhas, numColunas, x-1, y, pilha, caminho, &novoIndice) == true){
 			return true;
 		}
-			
 		
 		//se para cima não der solução => nao tem: desmarcar posição e voltar indiceCaminho
 		Desempilha (pilha, &item);
@@ -132,7 +135,7 @@ bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, Ti
 		indiceCaminho--;
 		return false;
 	}
-	//printf("\n PASSOU: matriz[%d][%d]",x,y);
+
 	return false;
 }
 
