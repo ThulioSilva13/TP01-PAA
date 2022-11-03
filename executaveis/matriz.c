@@ -50,9 +50,9 @@ Celula **inicializaMatriz(Celula **matriz, int linhas, int colunas){
     return matriz;
 }
 
-// void LiberaMatriz(Celula *matriz, int l){
-//     int i;
-//     for(i = 0; i < l; i++)
-//         free(matriz[i]);
-//     free(matriz);
-// }
+void liberaMatriz(Celula **matriz, int linha){
+    int i;
+    for(i = 0; i < linha; i++)
+        free(matriz[i]);
+    free(matriz);
+}

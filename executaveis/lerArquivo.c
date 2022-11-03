@@ -36,7 +36,6 @@ int lerArquivoPrincipal(char **nomeArquivo, int *l, int *c, Celula ***matriz)
             cadaNumero = strtok(cadaLinha, " ");
             while (cadaNumero != NULL)
             {
-                //printf("%d %d %d\n",posicaoLinha,posicaoColuna, atoi(cadaNumero));
                 insereMatriz(*matriz, posicaoLinha, posicaoColuna, atoi(cadaNumero));
                 posicaoColuna++;
                 cadaNumero = strtok(NULL, " ");

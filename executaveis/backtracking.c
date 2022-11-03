@@ -1,4 +1,5 @@
 #include "backtracking.h"
+
 void achaCaminho(Celula **matriz, int numLinhas, int numColunas, int modoAnalise){
 
 	TipoPilha pilha;
@@ -27,26 +28,18 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas, int modoAnalise
 	}
 
 	if (modoAnalise == 1){
-		printf("qntdRecursao: %d", QntdRecursao(pilha));
+		printf("\nQuantidade de chamadas recursivas: %d\n", QntdRecursao(pilha));
+		Imprime_QuantidadeRecursaoDirecao(pilha);
 	}
-	    
+
 	return;
 }
 
 bool verificaPosicao(Celula **matriz, int numLinhas, int numColunas, int x, int y, int *caminho, int indiceCaminho)
 {
-	// printf("\n\nEntrou na verifica caminho: ");
-	// printf("\n\n indice %d", indiceCaminho);
-	// printf("\n x = %d",x);
-	// printf("\n y = %d",y);
-
 	// if (x, y outside maze) return false
 	if ((x >= 0 && x < numLinhas) && (y >= 0 && y < numColunas) &&
-	 (matriz[x][y].valor == caminho[indiceCaminho])){
-		//printf("matriz[%d][%d].visitado = %d\n",x,y,);
-		// printf("\n\n Matriz[%d][%d]: %d", x,y,matriz[x][y].valor);
-		// printf("\n\n Caminho[*indiceCaminho]: %d", caminho[indiceCaminho]);
-		
+	 (matriz[x][y].valor == caminho[indiceCaminho])){		
 		return true;
 	} //passar qual valor tem q comparar: contador
 	
@@ -57,22 +50,11 @@ bool verificaPosicao(Celula **matriz, int numLinhas, int numColunas, int x, int 
 bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, TipoPilha* pilha, int *caminho, int *indiceCaminho)
 {
 	TipoItem item;
+	pilha->nivelRecursao[4]++;
 	pilha->qntdRecursao++;
-	//printaCaminho(caminho, numLinhas, numColunas);
 
-	// printf("\n ==== Entrou confereCaminho() ====");
-	// printf("y: %d ",y);
-	// printf("x: %d\n",x);
-	// printf("\n\n caminho[*indiceCaminho]: %d", caminho[*indiceCaminho]);
-	// printf("\n\n indice %d", *indiceCaminho);
-	// printf("\n\n caminho[*indiceCaminho]: %d", caminho[*indiceCaminho]);
-
-	/*Achamos que os problemas sao:
-		=> Valor nao esta sendo marcado como visitado;
-		=> Aceitando o caminho esquisito;
-		=> Negocio de desecrementar e desempilhar;
-	*/
 	int novoIndice = *indiceCaminho;
+
 	// Verifica se a posicao é valida
 	if (verificaPosicao(matriz, numLinhas, numColunas, x, y, caminho, novoIndice) == true) {
 		
@@ -107,6 +89,7 @@ bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, Ti
 		// Andar para baixo
 		// printf("tenta pra baixo");
 		
+		pilha->nivelRecursao[0] += 1;
 		if (movimentar(matriz, numLinhas, numColunas, x+1, y, pilha, caminho, &novoIndice) == true){
 			// printf("chamou pra baixo");
 			return true;
@@ -115,6 +98,8 @@ bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, Ti
 		//Se para baixo não der solução:
 		//Andar para direita
 		// printf("\ntenta pra direita");
+
+		pilha->nivelRecursao[1] += 1;
 		if (movimentar(matriz, numLinhas, numColunas, x, y+1, pilha, caminho, &novoIndice) == true){
 			return true;
 		}
@@ -123,17 +108,20 @@ bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, Ti
 		//Andar para esquerda
 
 		// printf("\ntenta pra esquerda");
+		pilha->nivelRecursao[2] += 1;
 		if (movimentar(matriz, numLinhas, numColunas, x, y-1, pilha, caminho, &novoIndice) == true){
 			return true;
 		}
 		//Se para esquerda não der solução:
 		//Andar para cima
-			
+		
+		pilha->nivelRecursao[3] += 1;
 		if (movimentar(matriz, numLinhas, numColunas, x-1, y, pilha, caminho, &novoIndice) == true){
 			return true;
 		}
 		
 		//se para cima não der solução => nao tem: desmarcar posição e voltar indiceCaminho
+		
 		Desempilha (pilha, &item);
 		matriz[x][y].visitado = false;
 		strcpy(matriz[x][y].cor, ANSI_COLOR_DEFAULT);
@@ -173,7 +161,7 @@ int fibonacci(int n)
 }
 
 void printaCaminho(int *caminho, int numLinha, int numColuna){
-	int max = numLinha*numColuna;
+	int max = numLinha * numColuna;
 	printf("\nCaminho = ");
     for (int i = 0; i < max; i++){
         printf("%d-", caminho[i]);

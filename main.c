@@ -7,7 +7,7 @@
 #include "./executaveis/backtracking.h"
 
 int menu(int opcao){
-    printf("\n======= MENU =======");
+    printf("\n\n======= MENU =======");
     printf("\n0) Sair");
     printf("\n1) Ler arquivo e montar a matriz");
     printf("\nEscolha: ");
@@ -15,6 +15,14 @@ int menu(int opcao){
     return opcao;
 }
 
+int menuAnalise(int modoAnalise){
+    printf("\nAtivar modo analise?: ");
+    printf("\n1) Sim");
+    printf("\n0) Nao");
+    printf("\nEscolha: ");
+    scanf("%d", &modoAnalise);
+    return modoAnalise;
+}
 int main(int argc, char **argv){
     Celula **matriz;
     int opcao = -1;
@@ -31,7 +39,6 @@ int main(int argc, char **argv){
         case 0:
             break;
         case 1:
-            
             if (*nomeArquivo == NULL)
             {
                 char nomeArqv[30];
@@ -41,18 +48,18 @@ int main(int argc, char **argv){
             }
             if (lerArquivoPrincipal(nomeArquivo, &numLinhas,&numColunas, &matriz) == 1)
             {
+                if (numLinhas > 100 || numColunas > 100)
+                {
+                    printf("\nNúmero de linhas ou colunas maiores que 100.");
+                    break;
+                }
+                
                 printaMatriz(matriz,numLinhas,numColunas);
 
-                int modoAnalise  = 0;
-                printf("\nAtivar modo analise?: ");
-                printf("\n1) Sim");
-                printf("\n0) Nao");
-                printf("\nEscolha: ");
-                scanf("%d", &modoAnalise);
+                int modoAnalise  = menuAnalise(modoAnalise);
                 achaCaminho(matriz, numLinhas, numColunas, modoAnalise);
-                //LiberaMatriz(matriz, l);  
+                liberaMatriz(matriz, numLinhas);
             }                 
-                 
             break;
         default:
             break;

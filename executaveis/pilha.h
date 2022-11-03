@@ -17,6 +17,7 @@ typedef struct TipoCelula {
 typedef struct {
   TipoApontadorPilha Fundo, Topo;
   int Tamanho, qntdRecursao;
+  int *nivelRecursao;
 } TipoPilha;
 
 void FPVazia(TipoPilha *Pilha);
@@ -34,5 +35,7 @@ void imprimePilhaInvertida(TipoPilha *pilhaAuxiliar);
 void invertePilha(TipoPilha *pilha);
 
 int QntdRecursao(TipoPilha Pilha);
+
+void Imprime_QuantidadeRecursaoDirecao(TipoPilha Pilha);
 
 

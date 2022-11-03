@@ -6,6 +6,7 @@ void FPVazia(TipoPilha *Pilha){
   Pilha->Topo->Prox = NULL;
   Pilha->Tamanho = 0;
   Pilha->qntdRecursao = 0;
+  Pilha->nivelRecursao = calloc(5,sizeof(int));
 } 
 
 int Vazia(TipoPilha Pilha)
@@ -34,7 +35,15 @@ void Desempilha(TipoPilha *Pilha, TipoItem *Item)
 int Tamanho(TipoPilha Pilha)
 { return (Pilha.Tamanho); } 
 
-int QntdRecursao(TipoPilha Pilha){ return (Pilha.qntdRecursao); } 
+int QntdRecursao(TipoPilha Pilha){ return (Pilha.qntdRecursao); }
+
+void Imprime_QuantidadeRecursaoDirecao(TipoPilha Pilha){
+    printf("Baixo[%d] ",Pilha.nivelRecursao[0]);
+    printf("Direita[%d] ",Pilha.nivelRecursao[1]);
+    printf("Esquerda[%d] ",Pilha.nivelRecursao[2]);
+    printf("Cima[%d] ",Pilha.nivelRecursao[3]);
+    printf("Recursao fora do if[%d]",Pilha.nivelRecursao[4]-(Pilha.nivelRecursao[0]+Pilha.nivelRecursao[3]+Pilha.nivelRecursao[1]+Pilha.nivelRecursao[2]));
+}
 
 void imprimePilhaInvertida(TipoPilha *pilhaAuxiliar){
     TipoApontadorPilha apAuxiliar;
