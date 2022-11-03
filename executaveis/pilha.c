@@ -45,8 +45,9 @@ void imprimePilhaInvertida(TipoPilha *pilhaAuxiliar){
     }
     else{
         while( apAuxiliar !=NULL){
-            printf("%d %d => valor: %d => visitado: %d",apAuxiliar->Item.celulaMatriz.posicaoLinha+1, 
-            apAuxiliar->Item.celulaMatriz.posicaoColuna+1, apAuxiliar->Item.celulaMatriz.valor,apAuxiliar->Item.celulaMatriz.visitado);
+            // printf("%d %d => valor: %d => visitado: %d",apAuxiliar->Item.celulaMatriz.posicaoLinha+1, 
+            // apAuxiliar->Item.celulaMatriz.posicaoColuna+1, apAuxiliar->Item.celulaMatriz.valor,apAuxiliar->Item.celulaMatriz.visitado);
+            printf("%d %d",apAuxiliar->Item.celulaMatriz.posicaoLinha,  apAuxiliar->Item.celulaMatriz.posicaoColuna);
             printf("\n");
             apAuxiliar = apAuxiliar->Prox;
         }

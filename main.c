@@ -42,16 +42,17 @@ int main(int argc, char **argv){
             if (lerArquivoPrincipal(nomeArquivo, &numLinhas,&numColunas, &matriz) == 1)
             {
                 printaMatriz(matriz,numLinhas,numColunas);
+
+                int modoAnalise  = 0;
+                printf("\nAtivar modo analise?: ");
+                printf("\n1) Sim");
+                printf("\n0) Nao");
+                printf("\nEscolha: ");
+                scanf("%d", &modoAnalise);
+                achaCaminho(matriz, numLinhas, numColunas, modoAnalise);
                 //LiberaMatriz(matriz, l);  
-            }
-            
-            
-            
-            //criaCaminho(numLinhas, numColunas);
-            //printaCaminho(caminho);  
-            
-            achaCaminho(matriz, numLinhas, numColunas);     
-   
+            }                 
+                 
             break;
         default:
             break;

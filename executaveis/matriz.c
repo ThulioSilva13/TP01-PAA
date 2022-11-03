@@ -4,9 +4,10 @@
 void insereMatriz(Celula **matriz, int posicaoLinha, int posicaoColuna, int valor){
     //(TipoApontador) malloc(sizeof(TipoCelula));
     matriz[posicaoLinha][posicaoColuna].valor = valor;
-    matriz[posicaoLinha][posicaoColuna].posicaoLinha = posicaoLinha;
-    matriz[posicaoLinha][posicaoColuna].posicaoColuna = posicaoColuna;
+    matriz[posicaoLinha][posicaoColuna].posicaoLinha = posicaoLinha+1;
+    matriz[posicaoLinha][posicaoColuna].posicaoColuna = posicaoColuna+1;
     matriz[posicaoLinha][posicaoColuna].visitado = false;
+    strcpy(matriz[posicaoLinha][posicaoColuna].cor, ANSI_COLOR_DEFAULT);
 }
 //void AndaPraBaixo(Celula **matriz);
 
@@ -18,7 +19,13 @@ void printaMatriz(Celula **matriz, int linhas, int colunas){
     {
         for ( j = 0; j < colunas; j++)
         {
-            printf("%d ", matriz[i][j].valor);
+            printf("%s", matriz[i][j].cor);
+            if (matriz[i][j].valor >= 0 && matriz[i][j].valor < 10){
+                printf(" %d ", matriz[i][j].valor);
+            }
+            else{
+                printf("%d ", matriz[i][j].valor);
+            }
         }
         printf("\n");
     }

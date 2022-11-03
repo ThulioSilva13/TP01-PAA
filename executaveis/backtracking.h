@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include "pilha.h"
 
-void achaCaminho(Celula **matriz, int numLinhas, int numColunas);
+void achaCaminho(Celula **matriz, int numLinhas, int numColunas, int modoAnalise);
 bool movimentar(Celula **matriz, int numLinhas, int numColunas, int x, int y, TipoPilha* pilha, int *caminho, int *indiceCaminho);
 void printaCaminho(int *caminho, int numLinhas, int numColunas);
 int* criaCaminho(int N, int M);

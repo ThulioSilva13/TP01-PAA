@@ -8,7 +8,7 @@ int lerArquivoPrincipal(char **nomeArquivo, int *l, int *c, Celula ***matriz)
     char *cadaNumero;
     char nomepasta[100] = "./arquivos/";
     char *cadaLinha;
-    cadaLinha = malloc(sizeof(char) * 150);
+    cadaLinha = malloc(sizeof(char) * 900);
     
     strcat(nomepasta, *nomeArquivo);
     strcat(nomepasta, ".txt");
