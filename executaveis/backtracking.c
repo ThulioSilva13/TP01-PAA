@@ -16,17 +16,17 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas, int modoAnalise
 			contadorDeFalsos++;
 		}
 		else{
-			printf("\nROTA ÓTIMA ENCONTRADA!\n");
+			printf("\nROTA OTIMA ENCONTRADA!\n");
 			printf("\nCoordenadas da rota:\n");
 			invertePilha(&pilha);
-			printf("\nPosições da rota na matriz:");
+			printf("\nPosicoes da rota na matriz:");
 			printaMatriz(matriz, numLinhas, numColunas);
 			break;
 		}
 	}
 
 	if (contadorDeFalsos == (numColunas)){
-		printf("\nIMPOSSÍVEL!");
+		printf("\nIMPOSSIVEL!");
 	}
 
 	if (modoAnalise == 1){

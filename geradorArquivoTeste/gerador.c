@@ -31,7 +31,7 @@ int main(){
         }
 
         else{
-            printf("\nEntre com as dimensões da fazenda: \n- N = ");
+            printf("\nEntre com as dimensoes da fazenda: \n- N = ");
             scanf("%d",&linhas);
             printf("- M = ");
             scanf("%d",&colunas);
@@ -48,13 +48,13 @@ int main(){
 
             if (opcao == 1){
                 printf("\n---------------------------------------------------------------------");
-                printf("\nMATRIZ SEM SOLUÇÃO");
+                printf("\nMATRIZ SEM SOLUCAO");
                 printf("\n---------------------------------------------------------------------\n");
                 preenche_aleatoriamente(matriz, linhas, colunas);
             }
             else{ //opcao == 2
                 printf("\n---------------------------------------------------------------------");
-                printf("\nMATRIZ COM SOLUÇÃO");
+                printf("\nMATRIZ COM SOLUCAO");
                 printf("\n---------------------------------------------------------------------\n");
                 preenche_caminho(matriz, linhas, colunas);
                 preenche_aleatoriamente(matriz, linhas, colunas); //preencher posições que nao fazem parte do caminho
