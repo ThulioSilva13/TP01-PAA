@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "matriz.h"
 
+void preencheAleatoriamente(int **matriz, int N, int M);
+void preencheCaminho(int **matriz, int N, int M);
+void printaMatriz(int **matriz, int N, int M);
 
-// void printaMatriz(int **matriz, int N, int M);
+int* criaCaminho(int N, int M);
+int fibonacci(int n);
+void printaCaminho(int *caminho, int N, int M);
 
-// int* criaCaminho(int N, int M);
-// int fibonacci(int n);
-// void printaCaminho(int *caminho, int N, int M);
-
-void geraTesteMenu(){
+void menu(){
     printf("\n---------------------------------------------------------------------");
     printf("\nMENU");
     printf("\n---------------------------------------------------------------------");
@@ -21,7 +21,7 @@ void geraTesteMenu(){
     printf("\nEscolha: ");
 }
 
-void geraTestesMain(){
+int main(){
 
     int opcao, N, M;
     
@@ -38,7 +38,7 @@ void geraTestesMain(){
         }
 
         else{
-            printf("\nEntre com as dimensões da fazenda: \n- N = ");
+            printf("\nEntre com as dimensoes da fazenda: \n- N = ");
             scanf("%d",&N);
             printf("- M = ");
             scanf("%d",&M);
@@ -73,7 +73,7 @@ void geraTestesMain(){
             }    
         }
     }
-    //return 0;
+    return 0;
 }
 
 void preencheAleatoriamente(int **matriz, int N, int M){
@@ -97,7 +97,7 @@ void preencheCaminho(int **matriz, int N, int M){
     for (int i=0;i<M; i++){
         colunas[i] = i;
     }
-    printf("\n Possibilidades de começo: ");
+    printf("\n Possibilidades de comeco: ");
     for (int i=0;i<M; i++){
         printf("%d - ",colunas[i]);
     }
@@ -125,51 +125,51 @@ void preencheCaminho(int **matriz, int N, int M){
     printaMatriz(matriz, N, M);
 }
 
-// void printaMatriz(int **matriz, int N, int M){
-//     int i, j;
-//     printf("\n%d %d",N,M);
-//     for ( i = 0; i < N; i++){
-//         printf("\n");
-//         for ( j = 0; j < M; j++){
-//             printf("%d ", matriz[i][j]);
-//         }
-//     }
-//     printf("\n"); 
-// }
+void printaMatriz(int **matriz, int N, int M){
+    int i, j;
+    printf("\n%d %d",N,M);
+    for ( i = 0; i < N; i++){
+        printf("\n");
+        for ( j = 0; j < M; j++){
+            printf("%d ", matriz[i][j]);
+        }
+    }
+    printf("\n"); 
+}
 
-// int* criaCaminho(int N, int M){
-//     int *caminho = calloc((N*M),sizeof(int));
-//     int max = N*M;
-//     int indice = 0;
-//     int qtd = 1;
-//     while (indice < max) {
-//         for (int i = 1; i < qtd; i++){
-//             if (indice == max){
-//                 return caminho;
-//             }
-//             caminho[indice] = fibonacci(i);
-//             indice ++;
-//         }
-//         qtd++;
-//     }
+int* criaCaminho(int N, int M){
+    int *caminho = calloc((N*M),sizeof(int));
+    int max = N*M;
+    int indice = 0;
+    int qtd = 1;
+    while (indice < max) {
+        for (int i = 1; i < qtd; i++){
+            if (indice == max){
+                return caminho;
+            }
+            caminho[indice] = fibonacci(i);
+            indice ++;
+        }
+        qtd++;
+    }
 
-//     return caminho;
-// }
+    return caminho;
+}
 
-// int fibonacci(int n)
-// { 
-//     int i = 1, k, F = 0;
-//     for (k = 1; k <= n; k++)
-//     { 
-//         F += i;  i = F - i;
-//     }
-//     return F;
-// }
+int fibonacci(int n)
+{ 
+    int i = 1, k, F = 0;
+    for (k = 1; k <= n; k++)
+    { 
+        F += i;  i = F - i;
+    }
+    return F;
+}
 
-// void printaCaminho(int *caminho, int N, int M){
-//     int max = N*M;
-//     printf("\nCaminho = ");
-//     for (int i = 0; i < max; i++){
-//         printf("%d-", caminho[i]);
-//     }
-// }
+void printaCaminho(int *caminho, int N, int M){
+    int max = N*M;
+    printf("\nCaminho = ");
+    for (int i = 0; i < max; i++){
+        printf("%d-", caminho[i]);
+    }
+}
