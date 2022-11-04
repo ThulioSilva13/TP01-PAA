@@ -29,7 +29,7 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas, int modoAnalise
 
 	if (modoAnalise == 1){
 		printf("\nQuantidade de chamadas recursivas: %d\n", QntdRecursao(pilha));
-		Imprime_QuantidadeRecursaoDirecao(pilha);
+		ImprimeQuantidadeRecursaoDirecao(pilha);
 	}
 
 	return;

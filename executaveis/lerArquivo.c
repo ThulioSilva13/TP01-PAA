@@ -13,6 +13,8 @@ int lerArquivoPrincipal(char **nomeArquivo, int *l, int *c, Celula ***matriz)
     strcat(nomepasta, *nomeArquivo);
     strcat(nomepasta, ".txt");
     printf("%s\n",nomepasta);
+
+    FILE *arquivoDeEntrada;
     
     if ((arquivoDeEntrada = fopen(nomepasta, "r")) == NULL)
     {

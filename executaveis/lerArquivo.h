@@ -3,5 +3,5 @@
 #include <stdlib.h>
 #include "matriz.h"
 
-FILE *arquivoDeEntrada;
+//FILE *arquivoDeEntrada;
 int lerArquivoPrincipal(char **nomeArquivo, int *l, int *c, Celula ***matriz);
