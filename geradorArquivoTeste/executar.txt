@@ -1,0 +1,3 @@
+Execute: 
+    gcc ./geradorArquivoTeste/gerador.c ./geradorArquivoTeste/fazenda.c -o gerarTeste.exe
+    
