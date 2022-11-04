@@ -9,11 +9,11 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas, int modoAnalise
 	caminho = criaCaminho(numLinhas, numColunas);
 	
 	int indiceCaminho = 0;
-	int countFalse = 0;
+	int contadorDeFalsos = 0;
 
 	for(int i=0; i<numColunas; i++){
 		if (movimentar(matriz, numLinhas, numColunas, 0, i, &pilha, caminho, &indiceCaminho) == false) {
-			countFalse++;
+			contadorDeFalsos++;
 		}
 		else{
 			printf("\n\nEncontrou Caminho!");
@@ -23,7 +23,7 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas, int modoAnalise
 		}
 	}
 
-	if (countFalse == (numColunas)){
+	if (contadorDeFalsos == (numColunas)){
 		printf("\n\nImpossivel!");
 	}
 
@@ -35,7 +35,7 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas, int modoAnalise
 	return;
 }
 
-bool verificaPosicao(Celula **matriz, int numLinhas, int numColunas, int x, int y, int *caminho, int indiceCaminho)
+bool verificaPosicao(Celula **matriz, int numLinhas, int numColunas,int x, int y, int *caminho, int indiceCaminho)
 {
 	if ((x >= 0 && x < numLinhas) && (y >= 0 && y < numColunas) &&
 	 (matriz[x][y].valor == caminho[indiceCaminho])){		
@@ -137,7 +137,6 @@ int* criaCaminho(int N, int M){
         }
         qtd++;
     }
-
 	return caminho;
 }
 

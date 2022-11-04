@@ -36,6 +36,6 @@ void invertePilha(TipoPilha *pilha);
 
 int QntdRecursao(TipoPilha Pilha);
 
-void Imprime_QuantidadeRecursaoDirecao(TipoPilha Pilha);
+void ImprimeQuantidadeRecursaoDirecao(TipoPilha Pilha);
 
 

@@ -35,7 +35,7 @@ int Tamanho(TipoPilha Pilha)
 
 int QntdRecursao(TipoPilha Pilha){ return (Pilha.qntdRecursao); }
 
-void Imprime_QuantidadeRecursaoDirecao(TipoPilha Pilha){
+void ImprimeQuantidadeRecursaoDirecao(TipoPilha Pilha){
     int maior = Pilha.nivelRecursao[0];
     for (int i = 0; i < 4; i++) 
     {

@@ -21,12 +21,17 @@ void menu(){
     printf("\nEscolha: ");
 }
 
-int main(){
-
+int main(int argc, char **argv){
     int opcao, N, M;
-    
-    while(1){ //enquanto verdaade
+    char *linha,*coluna;
 
+    linha = malloc(5);
+    coluna = malloc(5);
+
+    linha = argv[1];
+    coluna = argv[2];
+   
+    while(1){ //enquanto verdaade
         menu();
         scanf("%d",&opcao);
 
@@ -38,23 +43,31 @@ int main(){
         }
 
         else{
-            printf("\nEntre com as dimensoes da fazenda: \n- N = ");
-            scanf("%d",&N);
-            printf("- M = ");
-            scanf("%d",&M);
+            if(linha == NULL || coluna == NULL){
+                printf("\nEntre com as dimensoes da fazenda: \n- N = ");
+                scanf("%d",&N);
+                printf("- M = ");
+                scanf("%d",&M);
+            }
+            else{
+                N = atoi(linha);
+                M = atoi(coluna);
+                linha = NULL;
+                coluna = NULL;
+            }
+            
 
             //maximo 100. se maior que 100 colocar 100;
 
             int **matriz;
 
             matriz = (int**) malloc(N*sizeof(int*));
-            for(int i=0; i<N; i++)
+            for(int i = 0; i < N; i++)
                 matriz [i] = (int*)calloc(M,sizeof(int)); //alocar e já inicializar com 0
 
             if (opcao == 1){
                 printf("\nPreencher matriz com numeros aleatorios da sequencia de fibonacci");
-                preencheAleatoriamente(matriz, N, M);
-                
+                preencheAleatoriamente(matriz, N, M);             
                 printaMatriz(matriz, N, M);
             }
             else if (opcao == 2){
@@ -98,7 +111,7 @@ void preencheCaminho(int **matriz, int N, int M){
         colunas[i] = i;
     }
     printf("\n Possibilidades de comeco: ");
-    for (int i=0;i<M; i++){
+    for (int i = 0; i < M; i++){
         printf("%d - ",colunas[i]);
     }
 
@@ -106,8 +119,7 @@ void preencheCaminho(int **matriz, int N, int M){
 
     //escolher aleatoriamente de qual coluna começar:
     srand(time(NULL));
-    int y = colunas[(rand()%M)];;
-    //int y=0;
+    int y = colunas[(rand()%M)];
 
     printf("\nColuna Inicial = %d",y);
 
