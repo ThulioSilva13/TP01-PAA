@@ -19,7 +19,7 @@ void libera_matriz(Elemento **matriz, int linhas);
 
 void preenche_aleatoriamente(Elemento **matriz, int linhas, int colunas);
 void preenche_caminho(Elemento **matriz, int linhas, int colunas);
-int* proxima_posicao(int posicaoLinha, int posicaoColuna);
+bool verificaPosicao(Elemento **matriz, int numLinhas, int numColunas,int x, int y);
 
 int* cria_caminho(int linhas, int M);
 int fibonacci(int n);

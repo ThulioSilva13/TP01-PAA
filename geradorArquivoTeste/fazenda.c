@@ -1,12 +1,14 @@
 #include "fazenda.h"
 
-void insere_matriz(Elemento **matriz, int posicaoLinha, int posicaoColuna, int valor){
+void insere_matriz(Elemento **matriz, int posicaoLinha, int posicaoColuna, int valor)
+{
     matriz[posicaoLinha][posicaoColuna].valor = valor;
     matriz[posicaoLinha][posicaoColuna].visitado = false;
     strcpy(matriz[posicaoLinha][posicaoColuna].cor, ANSI_COLOR_DEFAULT);
 }
 
-void printa_matriz(Elemento **matriz, int linhas, int colunas){
+void printa_matriz(Elemento **matriz, int linhas, int colunas)
+{
     int i, j;
     for ( i = 0; i < linhas; i++){
         printf("\n");
@@ -20,17 +22,20 @@ void printa_matriz(Elemento **matriz, int linhas, int colunas){
             }
         }
     }
+    printf("\n");
     printf("%s", ANSI_COLOR_DEFAULT);
 }
 
-void libera_matriz(Elemento **matriz, int linha){
+void libera_matriz(Elemento **matriz, int linha)
+{
     int i;
     for(i = 0; i < linha; i++)
         free(matriz[i]);
     free(matriz);
 }
 
-void preenche_aleatoriamente(Elemento **matriz, int linhas, int colunas){
+void preenche_aleatoriamente(Elemento **matriz, int linhas, int colunas)
+{
     int i, j, n;
     srand(time(NULL));
     for (i = 0; i < linhas; i++){
@@ -42,7 +47,8 @@ void preenche_aleatoriamente(Elemento **matriz, int linhas, int colunas){
     }
 }
 
-void preenche_caminho(Elemento **matriz, int linhas, int colunas){
+void preenche_caminho(Elemento **matriz, int linhas, int colunas)
+{
     int *caminho = malloc((linhas*colunas)*sizeof(int));
     caminho = cria_caminho(linhas, colunas);
 
@@ -58,15 +64,61 @@ void preenche_caminho(Elemento **matriz, int linhas, int colunas){
     int indice = 0;
     int *prox = malloc((2)*sizeof(int));
 
-    while(x<linhas){
-        matriz[x][y].valor = caminho[indice];
-        strcpy(matriz[x][y].cor , ANSI_COLOR_GREEN);
-        x++;        
-        indice++;
+    srand(time(NULL));
+
+    while(1){
+
+        if (x==(linhas-1)){
+            matriz[x][y].valor = caminho[indice];
+            strcpy(matriz[x][y].cor , ANSI_COLOR_GREEN);
+            break; 
+        }
+        
+        int direcao = (rand()%3); //gerar numero aleatorio de 0 a 2;
+
+        if (direcao == 0){ //andar para baixo
+            if ((verificaPosicao(matriz, linhas, colunas, x+1, y))==true){
+                matriz[x][y].valor = caminho[indice];
+                strcpy(matriz[x][y].cor , ANSI_COLOR_GREEN);
+                matriz[x][y].visitado = true;
+                x++;        
+                indice++;
+            }
+        }
+
+        if (direcao == 1){ //andar para direita
+            if ((verificaPosicao(matriz, linhas, colunas, x, y+1))==true){
+                matriz[x][y].valor = caminho[indice];
+                strcpy(matriz[x][y].cor , ANSI_COLOR_GREEN);
+                matriz[x][y].visitado = true;
+                y++;        
+                indice++;
+            }
+        }
+
+        if (direcao == 2){ //andar para esquerda
+            if ((verificaPosicao(matriz, linhas, colunas, x, y-1))==true){
+                matriz[x][y].valor = caminho[indice];
+                strcpy(matriz[x][y].cor , ANSI_COLOR_GREEN);
+                matriz[x][y].visitado = true;
+                y--;        
+                indice++;
+            }
+        }
     }
 }
 
-int* cria_caminho(int linhas, int colunas){
+bool verificaPosicao(Elemento **matriz, int numLinhas, int numColunas,int x, int y)
+{
+	if ((x >= 0 && x < numLinhas) && (y >= 0 && y < numColunas) &&
+	    (matriz[x][y].visitado == false)) {	
+		return true;
+	} 	
+	return false;
+}
+
+int* cria_caminho(int linhas, int colunas)
+{
 	int *caminho = calloc((linhas*colunas),sizeof(int));
     int max = linhas*colunas;
     int indice = 0;
@@ -85,7 +137,8 @@ int* cria_caminho(int linhas, int colunas){
 	return caminho;
 }
 
-int fibonacci(int n){ 
+int fibonacci(int n)
+{ 
     int i = 1, k, F = 0;
     for (k = 1; k <= n; k++){ 
         F += i;  i = F - i;
@@ -93,7 +146,8 @@ int fibonacci(int n){
     return F;
 }
 
-void printa_caminho(int *caminho, int linhas, int colunas){
+void printa_caminho(int *caminho, int linhas, int colunas)
+{
 	int max = linhas*colunas;
 	printf("\nCaminho = ");
     for (int i = 0; i < max; i++){
@@ -101,54 +155,13 @@ void printa_caminho(int *caminho, int linhas, int colunas){
     }
 }
 
-int* proxima_posicao(int x, int y){
-
-    printf("\n recebeu: x = %d | y = %d", x,y);
-
-    int *posicao = malloc((2)*sizeof(int));
-
-    posicao[0] = x+1;
-    posicao[1] = y;
-
-    
-    int direcao[] = {1, -1};
-    char eixos[] = {'x', 'y'};
-    printf("\nDirecao = %d, %d", direcao[0], direcao[1]);
-    printf("\nEixo = %c, %c", eixos[0], eixos[1]);
-
-    srand(time(NULL));
-    int eixo = (rand()%2); 
-    int dir = (rand()%2);
-
-    printf("\n%d = eixo", eixo);
-    printf("\n%d = direcao", dir);
-    printf("\neixos[%d] = %c | direcao[%d] = %d", eixo, eixos[eixo], dir, direcao[dir]);
-    
-    if (eixos[eixo] == 'x') { 
-        posicao[0]=x+1;
-        posicao[1]=y;
-    }
-    else{
-        posicao[0]=x;
-        posicao[1]=y+1;
-    }
-    
-    
-    printf("\nposicao[0] = x = %d", posicao[0]);
-    printf("\nposicao[1] = y = %d", posicao[1]);
-    
-    return posicao;
-}
-
-void printa_arquivo(Elemento **matriz, int linhas, int colunas){
-
-    printf("\n\n---------------------------------------------------------------------");
-    printf("\nSALVAR EM ARQUIVO DE TEXTO");
-    printf("\n---------------------------------------------------------------------\n");
+void printa_arquivo(Elemento **matriz, int linhas, int colunas)
+{
+    printf("\n==== SALVAR EM ARQUIVO =====\n");
 
     FILE *arquivo;
 
-    char nome_pasta[30] = "./arquivos/";
+    char nome_pasta[30] = "../arquivosTeste/";
     char nome_arquivo[30];
 
     printf("Entre um nome para o arquivo:");

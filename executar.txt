@@ -1,6 +1,6 @@
 Pode-se executar de 2 formas, lendo o arquivo como parâmetro ou durante a execução do programa
     1)Execute: 
-        gcc main.c ./executaveis/backtracking.c ./executaveis/lerArquivo.c ./executaveis/matriz.c ./executaveis/pilha.c -o main -Wall -lm 
+        gcc main.c ./src/backtracking.c ./src/lerArquivo.c ./src/matriz.c ./src/pilha.c -o main -Wall -lm 
     2)
     =>Se quiser ler como parâmetro rode: ./main nomeArquivo
          :.exemplo -> ./main entrada

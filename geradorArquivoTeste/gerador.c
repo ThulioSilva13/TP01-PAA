@@ -1,12 +1,11 @@
 #include "fazenda.h"
 
 void menu(){
-    printf("\n---------------------------------------------------------------------");
-    printf("\nMENU");
-    printf("\n---------------------------------------------------------------------");
-    printf("\n[ 1 ] | Arquivo sem Solucao");
-    printf("\n[ 2 ] | Arquivo com Soulucao");
-    printf("\n[ 3 ] | Encerrar");
+
+    printf("\n\n=========== MENU ===========");
+    printf("\n1) Arquivo sem Solucao");
+    printf("\n2) Arquivo com Solucao");
+    printf("\n3) Encerrar");
     printf("\nEscolha: ");
 }
 
@@ -20,9 +19,7 @@ int main(){
         scanf("%d",&opcao);
 
         if( opcao == 3){
-            printf("\n---------------------------------------------------------------------");
-            printf("\nPROGAMA ENCERRADO");
-            printf("\n---------------------------------------------------------------------\n");
+            printf("\n==== PROGRAMA ENCERRADO ====\n");
             break;
         }
 
@@ -31,14 +28,13 @@ int main(){
         }
 
         else{
-            printf("\nEntre com as dimensoes da fazenda: \n- N = ");
+            printf("\nEntre com as dimensoes da fazenda: \n- comprimento = ");
             scanf("%d",&linhas);
-            printf("- M = ");
+            printf("- largura = ");
             scanf("%d",&colunas);
 
             if (linhas>100) linhas = 100;
             if (colunas>100) colunas= 100;
-            
 
             Elemento **matriz;
 
@@ -47,15 +43,13 @@ int main(){
                 matriz [i] = (Elemento*)calloc(colunas,sizeof(Elemento)); //alocar e já inicializar com 0
 
             if (opcao == 1){
-                printf("\n---------------------------------------------------------------------");
-                printf("\nMATRIZ SEM SOLUCAO");
-                printf("\n---------------------------------------------------------------------\n");
+                printf("\n==== SEM CAMINHO OTIM0 =====\n");
+
+                
                 preenche_aleatoriamente(matriz, linhas, colunas);
             }
             else{ //opcao == 2
-                printf("\n---------------------------------------------------------------------");
-                printf("\nMATRIZ COM SOLUCAO");
-                printf("\n---------------------------------------------------------------------\n");
+                printf("\n==== COM CAMINHO OTIM0 =====\n");
                 preenche_caminho(matriz, linhas, colunas);
                 preenche_aleatoriamente(matriz, linhas, colunas); //preencher posições que nao fazem parte do caminho
             }

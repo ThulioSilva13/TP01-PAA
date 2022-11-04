@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "./executaveis/lerArquivo.h"
-#include "./executaveis/matriz.h"
-#include "./executaveis/backtracking.h"
+#include "./src/lerArquivo.h"
+#include "./src/matriz.h"
+#include "./src/backtracking.h"
 
 int menu(int opcao)
 {
-    printf("\n\n======= MENU =======");
+    printf("\n\n=========== MENU ===========");
     printf("\n0) Sair");
     printf("\n1) Ler arquivo e montar a matriz");
     printf("\nEscolha: ");
@@ -18,7 +18,7 @@ int menu(int opcao)
 
 int menuAnalise(int modoAnalise)
 {
-    printf("\nAtivar modo analise?: ");
+    printf("\nAtivar modo analise? ");
     printf("\n0) Nao");
     printf("\n1) Sim");
     printf("\nEscolha: ");
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
             {
                 if (numLinhas > 100 || numColunas > 100)
                 {
-                    printf("\nNúmero de linhas ou colunas maiores que 100.");
+                    printf("\nNumero de linhas ou colunas maiores que 100.");
                     break;
                 }
                 
