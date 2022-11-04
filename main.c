@@ -62,7 +62,7 @@ int main(int argc, char **argv)
                 
                 int modoAnalise  = menuAnalise(modoAnalise);
                 achaCaminho(matriz, numLinhas, numColunas, modoAnalise);
-                liberaMatriz(matriz, numLinhas);
+       
             }                 
             break;
 

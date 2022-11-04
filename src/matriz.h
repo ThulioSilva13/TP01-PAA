@@ -23,6 +23,5 @@ typedef struct Celula{
 void insereMatriz(Celula **matriz, int posicaoLinha, int posicaoColuna, int valor);
 void printaMatriz(Celula **matriz, int linhas, int colunas);
 Celula **inicializaMatriz(Celula **matriz, int linhas, int colunas);
-void liberaMatriz(Celula **matriz, int linha);
 
 #endif

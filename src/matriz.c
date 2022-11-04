@@ -42,10 +42,3 @@ Celula **inicializaMatriz(Celula **matriz, int linhas, int colunas){
     }
     return matriz;
 }
-
-void liberaMatriz(Celula **matriz, int linha){
-    int i;
-    for(i = 0; i < linha; i++)
-        free(matriz[i]);
-    free(matriz);
-}
