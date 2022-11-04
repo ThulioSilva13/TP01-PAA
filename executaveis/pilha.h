@@ -3,39 +3,38 @@
 #include <sys/time.h>
 #include "matriz.h"
 
-//typedef int TipoChave;
 typedef struct TipoItem {
   Celula celulaMatriz;
 } TipoItem;
 
 typedef struct TipoCelula *TipoApontadorPilha;
 typedef struct TipoCelula {
-  TipoItem Item;
-  TipoApontadorPilha Prox;
+  TipoItem item;
+  TipoApontadorPilha prox;
 } TipoCelula;
 
 typedef struct {
-  TipoApontadorPilha Fundo, Topo;
-  int Tamanho, qntdRecursao;
+  TipoApontadorPilha fundo, topo;
+  int tamanho, qntdRecursao;
   int *nivelRecursao;
 } TipoPilha;
 
-void FPVazia(TipoPilha *Pilha);
+void fpVazia(TipoPilha *Pilha);
 
-int Vazia(TipoPilha Pilha);
+int vazia(TipoPilha Pilha);
 
-void Empilha(TipoItem x, TipoPilha *Pilha);
+void empilha(TipoItem x, TipoPilha *Pilha);
 
-void Desempilha(TipoPilha *Pilha, TipoItem *Item);
+void desempilha(TipoPilha *Pilha, TipoItem *Item);
 
-int Tamanho(TipoPilha Pilha);
+int  tamanho(TipoPilha Pilha);
 
 void imprimePilhaInvertida(TipoPilha *pilhaAuxiliar);
 
 void invertePilha(TipoPilha *pilha);
 
-int QntdRecursao(TipoPilha Pilha);
+int qntdRecursao(TipoPilha Pilha);
 
-void ImprimeQuantidadeRecursaoDirecao(TipoPilha Pilha);
+void imprimeQuantidadeRecursaoDirecao(TipoPilha Pilha);
 
 

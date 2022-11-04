@@ -1,86 +1,95 @@
 #include "pilha.h"
 
-void FPVazia(TipoPilha *Pilha){ 
-  Pilha->Topo = (TipoApontadorPilha) malloc(sizeof(TipoCelula));
-  Pilha->Fundo = Pilha->Topo;
-  Pilha->Topo->Prox = NULL;
-  Pilha->Tamanho = 0;
-  Pilha->qntdRecursao = 0;
-  Pilha->nivelRecursao = calloc(5,sizeof(int));
-} 
-
-int Vazia(TipoPilha Pilha)
-{ return (Pilha.Topo == Pilha.Fundo); } 
-
-void Empilha(TipoItem x, TipoPilha *Pilha){
-  TipoApontadorPilha Aux;
-  Aux = (TipoApontadorPilha) malloc(sizeof(TipoCelula));
-  Pilha->Topo->Item = x;
-  Aux->Prox = Pilha->Topo;
-  Pilha->Topo = Aux;
-  Pilha->Tamanho++;
-} 
-
-void Desempilha(TipoPilha *Pilha, TipoItem *Item)
+void fpVazia(TipoPilha *pilha)
 { 
-  TipoApontadorPilha q;
-  if (Vazia(*Pilha)) { printf("Erro: lista vazia\n"); return; }
-  q = Pilha->Topo;
-  Pilha->Topo = q->Prox;
-  *Item = q->Prox->Item;
+    pilha->topo = (TipoApontadorPilha) malloc(sizeof(TipoCelula));
+    pilha->fundo = pilha->topo;
+    pilha->topo->prox = NULL;
+    pilha->tamanho = 0;
+    pilha->qntdRecursao = 0;
+    pilha->nivelRecursao = calloc(5,sizeof(int));
 } 
 
-int Tamanho(TipoPilha Pilha)
-{ return (Pilha.Tamanho); } 
+int vazia(TipoPilha pilha) { return (pilha.topo == pilha.fundo); } 
 
-int QntdRecursao(TipoPilha Pilha){ return (Pilha.qntdRecursao); }
+void empilha(TipoItem item, TipoPilha *pilha){
+    TipoApontadorPilha aux;
+    aux = (TipoApontadorPilha) malloc(sizeof(TipoCelula));
+    pilha->topo->item = item;
+    aux->prox = pilha->topo;
+    pilha->topo = aux;
+    pilha->tamanho++;
+} 
 
-void ImprimeQuantidadeRecursaoDirecao(TipoPilha Pilha){
-    int maior = Pilha.nivelRecursao[0];
+void desempilha(TipoPilha *pilha, TipoItem *item)
+{ 
+    TipoApontadorPilha aux;
+    if (vazia(*pilha)) { 
+        printf("\nErro: Lista Vazia"); 
+        return; 
+    }
+    aux = pilha->topo;
+    pilha->topo = aux->prox;
+    *item = aux->prox->item;
+} 
+
+int tamanho(TipoPilha pilha) { return (pilha.tamanho); } 
+
+int qntdRecursao(TipoPilha pilha){ return (pilha.qntdRecursao); }
+
+void imprimeQuantidadeRecursaoDirecao(TipoPilha pilha)
+{
+    int maior = pilha.nivelRecursao[0];
     for (int i = 0; i < 4; i++) 
     {
-       if (Pilha.nivelRecursao[i] > maior)
-           maior = Pilha.nivelRecursao[i];
+       if (pilha.nivelRecursao[i] > maior)
+           maior = pilha.nivelRecursao[i];
     }
-    printf("\nNivel maximo de recursao: %d\n", maior);
+    printf("\n- Nivel maximo de recursao: %d", maior);
 }
 
-void imprimePilhaInvertida(TipoPilha *pilhaAuxiliar){
+void imprimePilhaInvertida(TipoPilha *pilhaAuxiliar)
+{
     TipoApontadorPilha apAuxiliar;
-    apAuxiliar = (*pilhaAuxiliar).Topo->Prox;
-    if(Vazia(*pilhaAuxiliar)){
+    apAuxiliar = (*pilhaAuxiliar).topo->prox;
+    if(vazia(*pilhaAuxiliar)){
         return;
     }
     else{
-        while( apAuxiliar !=NULL){
+        while( apAuxiliar !=NULL)
+        {
             // printf("%d %d => valor: %d => visitado: %d",apAuxiliar->Item.celulaMatriz.posicaoLinha+1, 
             // apAuxiliar->Item.celulaMatriz.posicaoColuna+1, apAuxiliar->Item.celulaMatriz.valor,apAuxiliar->Item.celulaMatriz.visitado);
-            printf("%d %d",apAuxiliar->Item.celulaMatriz.posicaoLinha,  apAuxiliar->Item.celulaMatriz.posicaoColuna);
+            printf("%d %d",apAuxiliar->item.celulaMatriz.posicaoLinha,  apAuxiliar->item.celulaMatriz.posicaoColuna);
             printf("\n");
-            apAuxiliar = apAuxiliar->Prox;
+            apAuxiliar = apAuxiliar->prox;
         }
         printf("\n");
     }
 }
 
-void invertePilha(TipoPilha *pilha){  
+void invertePilha(TipoPilha *pilha)
+{  
     TipoPilha pilhaAuxiliar;
     TipoItem itemPilhaAuxiliar;
 
     TipoApontadorPilha ap;
-    ap = pilha->Topo->Prox;
+    ap = pilha->topo->prox;
 
-    FPVazia(&pilhaAuxiliar);
-    if(Vazia(*pilha)){
-        return;
+    fpVazia(&pilhaAuxiliar);
+
+    if(vazia(*pilha)){ 
+        return; 
     }
-    else{
-        while( ap !=NULL){
-            itemPilhaAuxiliar.celulaMatriz.valor = ap->Item.celulaMatriz.valor;
-            itemPilhaAuxiliar.celulaMatriz.posicaoLinha = ap->Item.celulaMatriz.posicaoLinha;
-            itemPilhaAuxiliar.celulaMatriz.posicaoColuna = ap->Item.celulaMatriz.posicaoColuna;
-            Empilha(itemPilhaAuxiliar, &pilhaAuxiliar);
-            ap = ap->Prox;
+    else
+    {
+        while( ap !=NULL)
+        {
+            itemPilhaAuxiliar.celulaMatriz.valor = ap->item.celulaMatriz.valor;
+            itemPilhaAuxiliar.celulaMatriz.posicaoLinha = ap->item.celulaMatriz.posicaoLinha;
+            itemPilhaAuxiliar.celulaMatriz.posicaoColuna = ap->item.celulaMatriz.posicaoColuna;
+            empilha(itemPilhaAuxiliar, &pilhaAuxiliar);
+            ap = ap->prox;
         }
         printf("\n");
     }

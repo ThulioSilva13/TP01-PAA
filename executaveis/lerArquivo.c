@@ -12,7 +12,7 @@ int lerArquivoPrincipal(char **nomeArquivo, int *l, int *c, Celula ***matriz)
     
     strcat(nomepasta, *nomeArquivo);
     strcat(nomepasta, ".txt");
-    printf("%s\n",nomepasta);
+    //printf("%s\n",nomepasta);
 
     FILE *arquivoDeEntrada;
     
@@ -29,11 +29,11 @@ int lerArquivoPrincipal(char **nomeArquivo, int *l, int *c, Celula ***matriz)
     
     int posicaoLinha = 0;
 
-    while (!feof(arquivoDeEntrada))
-    {
+    while (!feof(arquivoDeEntrada)){
+        
         int posicaoColuna  = 0;
         fscanf(arquivoDeEntrada," %[^\n]s",cadaLinha);         
-        if (cadaLinha) // Se foi possível ler
+        if (cadaLinha) // se foi possível ler
         { 
             cadaNumero = strtok(cadaLinha, " ");
             while (cadaNumero != NULL)

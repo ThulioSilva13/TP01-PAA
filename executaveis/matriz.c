@@ -1,6 +1,5 @@
 #include "matriz.h"
 
-
 void insereMatriz(Celula **matriz, int posicaoLinha, int posicaoColuna, int valor){
     matriz[posicaoLinha][posicaoColuna].valor = valor;
     matriz[posicaoLinha][posicaoColuna].posicaoLinha = posicaoLinha+1;
@@ -8,16 +7,13 @@ void insereMatriz(Celula **matriz, int posicaoLinha, int posicaoColuna, int valo
     matriz[posicaoLinha][posicaoColuna].visitado = false;
     strcpy(matriz[posicaoLinha][posicaoColuna].cor, ANSI_COLOR_DEFAULT);
 }
-//void AndaPraBaixo(Celula **matriz);
 
 void printaMatriz(Celula **matriz, int linhas, int colunas){
     int i, j;
-    printf("\nlinhas: %d || colunas: %d\n",linhas,colunas);
     printf("\n");
-    for ( i = 0; i < linhas; i++)
-    {
-        for ( j = 0; j < colunas; j++)
-        {
+    for ( i = 0; i < linhas; i++){
+        printf("\n");
+        for ( j = 0; j < colunas; j++){
             printf("%s", matriz[i][j].cor);
             if (matriz[i][j].valor >= 0 && matriz[i][j].valor < 10){
                 printf(" %d ", matriz[i][j].valor);
@@ -25,8 +21,7 @@ void printaMatriz(Celula **matriz, int linhas, int colunas){
             else{
                 printf("%d ", matriz[i][j].valor);
             }
-        }
-        printf("\n");
+        }  
     }
 }
 
