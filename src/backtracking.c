@@ -19,7 +19,7 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas, int modoAnalise
 			printf("\nROTA OTIMA ENCONTRADA!\n");
 			printf("\nCoordenadas da rota:\n");
 			invertePilha(&pilha);
-			printf("\nPosicoes da rota na matriz:");
+			printf("Posicoes da rota na matriz:");
 			printaMatriz(matriz, numLinhas, numColunas);
 			break;
 		}

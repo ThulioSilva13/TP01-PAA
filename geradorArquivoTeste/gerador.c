@@ -3,8 +3,8 @@
 void menu(){
 
     printf("\n\n=========== MENU ===========");
-    printf("\n1) Arquivo sem Solucao");
-    printf("\n2) Arquivo com Solucao");
+    printf("\n1) Arquivo sem caminho otimo");
+    printf("\n2) Arquivo com caminho otimo");
     printf("\n3) Encerrar");
     printf("\nEscolha: ");
 }
