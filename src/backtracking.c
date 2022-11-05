@@ -31,6 +31,7 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas, int modoAnalise
 
 	if (modoAnalise == 1){
 		printf("\n\n======= MODO ANALISE ======= \n");
+		printf("\n- Dimensoes: %d x %d", numLinhas, numColunas);
 		printf("\n- Quantidade de chamadas recursivas: %d", qntdRecursao(pilha));
 		imprimeQuantidadeRecursaoDirecao(pilha);
 	}
