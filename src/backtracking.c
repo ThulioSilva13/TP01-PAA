@@ -21,6 +21,7 @@ void achaCaminho(Celula **matriz, int numLinhas, int numColunas, int modoAnalise
 			invertePilha(&pilha);
 			printf("Posicoes da rota na matriz:");
 			printaMatriz(matriz, numLinhas, numColunas);
+			printf("%s", ANSI_COLOR_DEFAULT); //voltar terminal para cor padrao
 			break;
 		}
 	}
